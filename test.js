@@ -24,8 +24,8 @@ describe('AsyncStorage', function () {
     });
 
     it('supports callbacks', function (next) {
-      AsyncStorage.setItem('foocb', 'cb', (err) => {
-        if (err) return next(err);
+      AsyncStorage.setItem('foocb', 'cb', (fail) => {
+        if (fail) return next(fail);
 
         AsyncStorage.getItem('foocb', (err, data) => {
           if (err) return next(err);
@@ -34,6 +34,24 @@ describe('AsyncStorage', function () {
 
           next();
         });
+      });
+    });
+
+    it('is an async operation', function (next) {
+      let values = [];
+
+      AsyncStorage.setItem('async-op', 'stored as last', function (fail) {
+        if (fail) return next(fail);
+
+        AsyncStorage.getItem('async-op', function (err, data) {
+          if (err) return next(err);
+
+          values.push(data);
+          assume(values).deep.equals(['stored first', 'stored as last']);
+          next();
+        });
+
+        values.push('stored first');
       });
     });
   });

@@ -29,22 +29,26 @@ function merge(target, data) {
  * @private
  */
 function assign(name, fn) {
-  async function wrapper(...args) {
-    let error = null;
-    let callback;
-    let result;
+  function wrapper(...args) {
+    return new Promise(function asPromised(resolve, reject) {
+      setImmediate(async function forcedAsync() {
+        let error = null;
+        let callback;
+        let result;
 
-    if (typeof args[args.length - 1] === 'function') {
-      callback = args.pop();
-    }
+        if (typeof args[args.length - 1] === 'function') {
+          callback = args.pop();
+        }
 
-    try { result = await fn(...args); }
-    catch (e) { error = e; }
+        try { result = await fn(...args); }
+        catch (e) { error = e; }
 
-    if (callback) return callback(error, result);
-    if (error) throw error;
+        if (callback) return callback(error, result);
+        if (error) return reject(error);
 
-    return result;
+        resolve(result);
+      });
+    });
   }
 
   wrapper.displayName = name;
