@@ -1,0 +1,30 @@
+{
+  "name": "asyncstorageapi",
+  "version": "1.0.0",
+  "description": "Mocked AsyncStorage API form React-Native, backed by a Map()",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/3rd-Eden/asyncstorageapi.git"
+  },
+  "keywords": [
+    "asyncstorage",
+    "async",
+    "storage",
+    "react-native",
+    "react"
+  ],
+  "author": "Arnout Kazemier",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/3rd-Eden/asyncstorageapi/issues"
+  },
+  "homepage": "https://github.com/3rd-Eden/asyncstorageapi#readme",
+  "devDependencies": {
+    "assume": "^2.1.0",
+    "mocha": "^5.2.0"
+  }
+}
