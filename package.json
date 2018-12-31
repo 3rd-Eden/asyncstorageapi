@@ -1,6 +1,6 @@
 {
   "name": "asyncstorageapi",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Mocked AsyncStorage API form React-Native, backed by a Map()",
   "main": "index.js",
   "scripts": {

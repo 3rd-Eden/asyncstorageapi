@@ -19,6 +19,12 @@ With the following exceptions:
 Everything else should work as intended or be considered a bug in this
 implementation.
 
+- All methods are truely async.
+- Supports Promise and callback based patterns.
+- Merging of Objects is done deeply.
+- The returned `AsyncStorage` instance is an `object`
+- The `AsyncStorage` object only exposes the API methods, nothing more.
+
 ## License
 
 MIT
