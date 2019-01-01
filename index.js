@@ -43,6 +43,14 @@ function assign(name, fn) {
         try { result = await fn(...args); }
         catch (e) { error = e; }
 
+        //
+        // AsyncStorage has a really weird error handling when it comes to multi
+        // calls, instead of a single error, it will be an array of errors.
+        //
+        if (~name.indexOf('multi') && error && !Array.isArray(error)) {
+          error = [error];
+        }
+
         if (callback) return callback(error, result);
         if (error) return reject(error);
 

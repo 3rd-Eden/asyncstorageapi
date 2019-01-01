@@ -135,6 +135,7 @@ describe('AsyncStorage', function () {
          ['bar.4', '4']
        ]);
      } catch(e) {
+       assume(e).is.a('array');
        error = true;
      }
 
